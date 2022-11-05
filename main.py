@@ -1,10 +1,15 @@
 from utils.View import View
 from utils.Message import Message
 from AppContext import AppContext
+import traceback
 
-AppContext.init()
-if AppContext.config["debug"]:
-    View.print(Message.info("Debug Mode"))
+try:
+    AppContext.init()
+    if AppContext.config["debug"]:
+        View.print(Message.info("Debug Mode"))
 
-View.print(Message.info("End"))
-input(Message.ask("Push key to exit..."))
+    View.print(Message.info("End"))
+except Exception as err:
+    print("Exception occured: {}".format(err))
+    print(traceback.format_exc())
+input("Push key to exit...")
